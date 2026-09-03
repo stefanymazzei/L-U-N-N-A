@@ -1,0 +1,2583 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L U N N A | Haute Joaillerie</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@1,300;1,400;1,500&family=Montserrat:wght@200;300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" href="L N.png">
+
+    <style>
+        :root {
+            /* PALETA OFICIAL L U N N A (80% Azul / 15% Marfim / 5% Champagne) */
+            --azul-lunna-abyssal: #010B18;
+            --azul-lunna-deep: #021429;
+            --azul-lunna-light: #A7EBF2;
+            --azul-lunna-soft: #54ACBF;
+            
+            --marfim-imperial: #F7F5F0;
+            --marfim-muted: rgba(247, 245, 240, 0.65);
+            
+            --champagne-subtle: #D4C3A3;
+            --prata-subtle: rgba(212, 225, 235, 0.4);
+            
+            --font-title: 'Cinzel', serif;
+            --font-editorial: 'Cormorant Garamond', serif;
+            --font-sans: 'Montserrat', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: default;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            background-color: var(--azul-lunna-abyssal);
+        }
+
+        body {
+            background: radial-gradient(circle at 50% 15%, var(--azul-lunna-deep) 0%, var(--azul-lunna-abyssal) 75%);
+            color: var(--marfim-imperial);
+            font-family: var(--font-sans);
+            line-height: 1.8;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* ESTILO PARA TODAS AS DESCRIÇÕES EM CORMORANT GARAMOND ITALIC */
+        .desc-garamond-italic {
+            font-family: var(--font-editorial) !important;
+            font-style: italic !important;
+        }
+
+        /* CURSOR DE REFRAÇÃO DE LUZ LUNAR */
+        .cursor-light {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(167, 235, 242, 0.06) 0%, rgba(84, 172, 191, 0.02) 40%, transparent 70%);
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            transition: transform 0.12s ease-out, opacity 0.5s ease;
+        }
+
+        /* FUNDO DE CÁUSTICA MINERAL/NOITE */
+        .water-bg-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.35;
+            overflow: hidden;
+            mix-blend-mode: screen;
+        }
+
+        .water-bg-overlay img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.85) contrast(1.15);
+        }
+
+        .page-content {
+            position: relative;
+            z-index: 3;
+        }
+
+        /* HEADER SEM A LINHA INFERIOR */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: linear-gradient(180deg, rgba(1, 11, 24, 0.95) 0%, rgba(1, 11, 24, 0) 100%);
+            backdrop-filter: blur(16px);
+            padding: 1.35rem 3.5% 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: none;
+            overflow: visible;
+            min-height: 112px;
+        }
+
+        .header-left, .header-right {
+            display: flex;
+            align-items: center;
+            gap: clamp(1rem, 2vw, 2.5rem);
+            min-width: 0;
+            flex-shrink: 0;
+        }
+
+        /* LOGO APENAS EM TEXTO "L U N N A" */
+        .logo-text {
+            display: inline-block;
+            font-family: var(--font-title);
+            font-size: clamp(1.8rem, 2.45vw, 2.9rem);
+            font-weight: 500;
+            letter-spacing: 0.24em;
+            color: var(--marfim-imperial);
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: opacity 0.4s ease;
+            white-space: nowrap;
+            line-height: 1.05;
+        }
+
+        .logo-text:hover {
+            opacity: 0.85;
+        }
+
+        /* CATEGORIAS DROPDOWN */
+        .category-menu-wrapper {
+            position: relative;
+        }
+
+        .hamburger-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+            padding: 0.5rem;
+        }
+
+        .hamburger-icon {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            width: 22px;
+        }
+
+        .hamburger-icon span {
+            display: block;
+            width: 100%;
+            height: 1px;
+            background-color: var(--marfim-imperial);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            opacity: 0.8;
+        }
+
+        .hamburger-btn:hover .hamburger-icon span {
+            background-color: var(--azul-lunna-light);
+            opacity: 1;
+        }
+
+        .hamburger-text {
+            font-size: 0.9rem;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            font-weight: 400;
+            color: var(--marfim-muted);
+        }
+
+        .category-dropdown {
+            position: absolute;
+            top: 180%;
+            left: 0;
+            width: 290px;
+            background: rgba(1, 11, 24, 0.98);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(167, 235, 242, 0.1);
+            padding: 2rem 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(15px);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.9);
+        }
+
+        .category-menu-wrapper:hover .category-dropdown,
+        .category-dropdown.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .category-dropdown ul { list-style: none; }
+
+        .category-dropdown li a {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.85rem 2.2rem;
+            color: var(--marfim-muted);
+            text-decoration: none;
+            font-size: 0.72rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            font-weight: 300;
+            transition: all 0.4s ease;
+        }
+
+        .category-dropdown li a:hover {
+            color: var(--azul-lunna-light);
+            padding-left: 2.8rem;
+            background: rgba(167, 235, 242, 0.03);
+        }
+
+        .search-btn, .login-nav-btn {
+            background: transparent;
+            border: none;
+            color: var(--marfim-muted);
+            font-family: var(--font-sans);
+            font-size: 0.72rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            font-weight: 300;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            transition: color 0.4s ease;
+        }
+
+        .search-btn:hover, .login-nav-btn:hover {
+            color: var(--azul-lunna-light);
+        }
+
+        .language-switcher {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .language-switcher select {
+            background: rgba(1, 11, 24, 0.55);
+            border: 1px solid rgba(167, 235, 242, 0.2);
+            color: var(--marfim-imperial);
+            font-family: var(--font-sans);
+            font-size: 0.7rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            padding: 0.7rem 2.2rem 0.7rem 0.9rem;
+            border-radius: 999px;
+            outline: none;
+            appearance: none;
+            background-image: linear-gradient(45deg, transparent 50%, var(--marfim-imperial) 50%), linear-gradient(135deg, var(--marfim-imperial) 50%, transparent 50%);
+            background-position: calc(100% - 18px) calc(50% - 2px), calc(100% - 12px) calc(50% - 2px);
+            background-size: 6px 6px, 6px 6px;
+            background-repeat: no-repeat;
+            cursor: pointer;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+        }
+
+        .language-switcher select:focus {
+            border-color: rgba(167, 235, 242, 0.6);
+            box-shadow: 0 0 0 3px rgba(167, 235, 242, 0.12);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: clamp(1.2rem, 2.1vw, 3rem);
+            align-items: center;
+            flex-wrap: nowrap;
+        }
+
+        nav a {
+            color: var(--marfim-muted);
+            text-decoration: none;
+            font-size: clamp(0.77rem, 1vw, 1.05rem);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            font-weight: 400;
+            transition: color 0.4s ease;
+            white-space: nowrap;
+        }
+
+        nav a:hover {
+            color: var(--marfim-imperial);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 0 8%;
+            isolation: isolate;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 10% 12%;
+            background: radial-gradient(ellipse at center, rgba(212, 195, 163, 0.14), transparent 58%);
+            filter: blur(35px);
+            opacity: 0.7;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 1px;
+            height: 82px;
+            bottom: 0;
+            left: 50%;
+            background: linear-gradient(to bottom, rgba(212, 195, 163, 0.65), transparent);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        /* CONTAINER DO RETÂNGULO DE VIDRO JATEADO */
+        .hero-prism-container {
+            position: absolute;
+            width: min(86%, 1120px);
+            height: min(61vh, 550px);
+            min-height: 430px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* RETÂNGULO ESTÁTICO DE VIDRO (GLASSMORPHISM) */
+        .hero-prism {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(115deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.035) 34%, rgba(1, 11, 24, 0.08) 100%);
+            backdrop-filter: blur(12px) saturate(115%);
+            -webkit-backdrop-filter: blur(12px) saturate(115%);
+            border: 1px solid rgba(212, 195, 163, 0.34);
+            border-radius: 2px;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.62), inset 0 1px 0 rgba(255, 255, 255, 0.18), inset 0 0 70px rgba(167, 235, 242, 0.04);
+        }
+
+        .hero-prism::before,
+        .hero-prism::after {
+            content: '';
+            position: absolute;
+            pointer-events: none;
+        }
+
+        .hero-prism::before {
+            inset: 14px;
+            border: 1px solid rgba(247, 245, 240, 0.12);
+        }
+
+        .hero-prism::after {
+            top: 14px;
+            right: 14px;
+            width: 170px;
+            height: 170px;
+            border-top: 1px solid rgba(212, 195, 163, 0.65);
+            border-right: 1px solid rgba(212, 195, 163, 0.65);
+        }
+
+        .hero-content {
+            max-width: 1100px;
+            text-align: center;
+            z-index: 2;
+            position: relative;
+            padding: 3rem 2rem 4rem;
+        }
+
+        .hero-maison-tag {
+            font-family: var(--font-title);
+            font-size: 0.68rem;
+            letter-spacing: 0.72em;
+            color: var(--champagne-subtle);
+            text-transform: uppercase;
+            margin-bottom: 2.7rem;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+
+        .hero-title {
+            font-family: var(--font-editorial);
+            font-style: italic;
+            font-size: clamp(3.5rem, 5.5vw, 6.4rem);
+            font-weight: 300;
+            letter-spacing: 0.01em;
+            color: var(--marfim-imperial);
+            line-height: 1.05;
+            margin-bottom: 1.8rem;
+            text-shadow: 0 18px 55px rgba(0,0,0,0.95);
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-sans);
+            font-size: 0.72rem;
+            letter-spacing: 0.42em;
+            color: var(--marfim-muted);
+            text-transform: uppercase;
+            font-weight: 300;
+            margin-bottom: 3.2rem;
+        }
+
+        .btn-editorial {
+            display: inline-block;
+            padding: 1.35rem 4.2rem;
+            background: rgba(1, 11, 24, 0.14);
+            color: var(--marfim-imperial);
+            text-decoration: none;
+            font-size: 0.68rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            font-weight: 400;
+            border: 1px solid rgba(212, 195, 163, 0.5);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+        }
+
+        .btn-editorial:hover {
+            border-color: var(--marfim-imperial);
+            background: rgba(212, 195, 163, 0.12);
+            box-shadow: 0 0 35px rgba(212, 195, 163, 0.16);
+            color: var(--marfim-imperial);
+        }
+
+        .brand-signature {
+            font-family: var(--font-editorial);
+            font-style: italic;
+            font-size: 0.95rem;
+            letter-spacing: 0.3em;
+            color: var(--champagne-subtle);
+            opacity: 0.8;
+            margin-top: 1rem;
+        }
+
+        /* GALERIA L U N N A COLLECTIONS */
+        section {
+            padding: 11rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 7rem;
+            padding: 0 8%;
+        }
+
+        .section-title {
+            font-family: var(--font-title);
+            font-size: 1.9rem;
+            letter-spacing: 0.4em;
+            color: var(--marfim-imperial);
+            text-transform: uppercase;
+            font-weight: 400;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 45px;
+            height: 1px;
+            background: var(--champagne-subtle);
+            margin: 1.8rem auto 0;
+            opacity: 0.5;
+        }
+
+        .section-subtitle-text {
+            color: var(--marfim-muted);
+            font-size: 1.45rem;
+            margin-top: 1.2rem;
+            font-weight: 300;
+        }
+
+        /* CARROSSEL CONTINUO EDITORIAL */
+        .carousel-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .carousel-container::before,
+        .carousel-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 250px;
+            height: 100%;
+            z-index: 4;
+            pointer-events: none;
+        }
+
+        .carousel-container::before {
+            left: 0;
+            background: linear-gradient(to right, var(--azul-lunna-abyssal), transparent);
+        }
+
+        .carousel-container::after {
+            right: 0;
+            background: linear-gradient(to left, var(--azul-lunna-abyssal), transparent);
+        }
+
+        .carousel-track {
+            display: flex;
+            gap: 3.2rem;
+            width: max-content;
+            animation: scrollInfinite 85s linear infinite;
+        }
+
+        .carousel-container:hover .carousel-track {
+            animation-play-state: paused;
+        }
+
+        @keyframes scrollInfinite {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .jewel-card {
+            width: 310px;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            background: rgba(2, 20, 41, 0.45);
+            border: 1px solid rgba(167, 235, 242, 0.08);
+            backdrop-filter: blur(12px);
+            padding: 1rem;
+            transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+        }
+
+        .jewel-card:hover {
+            transform: translateY(-12px);
+            border-color: rgba(167, 235, 242, 0.3);
+            box-shadow: 0 35px 70px rgba(0, 0, 0, 0.8), 0 0 45px rgba(84, 172, 191, 0.12);
+            background: rgba(2, 25, 54, 0.65);
+        }
+
+        .jewel-img-box {
+            position: relative;
+            width: 100%;
+            height: 255px;
+            overflow: hidden;
+            background: #010812;
+        }
+
+        .jewel-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(15%) contrast(1.1);
+            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 1.2s ease;
+        }
+
+        .jewel-card:hover .jewel-img-box img {
+            transform: scale(1.08);
+            filter: grayscale(0%) contrast(1.15);
+        }
+
+        .jewel-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: var(--azul-lunna-light);
+            font-size: 0.6rem;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            font-weight: 300;
+            border-bottom: 1px solid rgba(167, 235, 242, 0.3);
+            padding-bottom: 2px;
+        }
+
+        .jewel-info {
+            padding: 1.35rem 0.75rem 0.8rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .jewel-gem-name {
+            font-size: 0.58rem;
+            letter-spacing: 0.35em;
+            color: var(--azul-lunna-soft);
+            text-transform: uppercase;
+            font-weight: 400;
+            margin-bottom: 0.45rem;
+        }
+
+        .jewel-title {
+            font-family: var(--font-title);
+            font-size: 1rem;
+            color: var(--marfim-imperial);
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.7rem;
+        }
+
+        .jewel-desc {
+            font-size: 1.08rem;
+            color: var(--marfim-muted);
+            margin-bottom: 1.25rem;
+            line-height: 1.55;
+        }
+
+        .jewel-quote-btn {
+            font-family: var(--font-sans);
+            font-style: normal;
+            font-weight: 700;
+            color: var(--marfim-muted);
+            font-size: 0.62rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            text-align: left;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-top: auto;
+        }
+
+        .jewel-quote-btn::after {
+            content: '→';
+            font-size: 0.9rem;
+            transition: transform 0.4s ease;
+        }
+
+        .jewel-quote-btn:hover {
+            color: var(--azul-lunna-light);
+        }
+
+        .jewel-quote-btn:hover::after {
+            transform: translateX(6px);
+        }
+
+        /* THE HOUSE */
+        .about-section {
+            padding: 11rem 12%;
+            position: relative;
+            background: linear-gradient(180deg, transparent 0%, rgba(1, 18, 38, 0.8) 50%, transparent 100%);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            margin-bottom: 2rem;
+            color: var(--marfim-muted);
+            font-size: 1.35rem;
+            text-align: justify;
+            line-height: 1.8;
+        }
+
+        .about-quote {
+            border-left: 1px solid var(--champagne-subtle);
+            padding-left: 2rem;
+            margin: 3.5rem 0;
+            color: var(--marfim-imperial);
+            font-size: 1.65rem;
+            line-height: 1.5;
+        }
+
+        .acronym-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .acronym-card {
+            background: rgba(2, 23, 48, 0.45);
+            border: 1px solid rgba(167, 235, 242, 0.08);
+            padding: 2.2rem 1rem;
+            text-align: center;
+            transition: all 0.5s ease;
+        }
+
+        .acronym-card:hover {
+            border-color: var(--azul-lunna-soft);
+            transform: translateY(-5px);
+            background: rgba(2, 23, 48, 0.85);
+        }
+
+        .acronym-letter {
+            font-family: var(--font-title);
+            font-size: 2.6rem;
+            color: var(--azul-lunna-light);
+            display: block;
+            font-weight: 400;
+        }
+
+        .acronym-word {
+            font-size: 0.68rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--marfim-muted);
+            font-weight: 300;
+        }
+
+        .mvv-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3.5rem;
+            margin-top: 9rem;
+        }
+
+        .mvv-card {
+            background: rgba(2, 19, 41, 0.35);
+            border: 1px solid rgba(167, 235, 242, 0.08);
+            padding: 4rem 2.5rem;
+            text-align: center;
+            transition: all 0.5s ease;
+        }
+
+        .mvv-card:hover {
+            border-color: rgba(167, 235, 242, 0.25);
+            background: rgba(2, 19, 41, 0.7);
+        }
+
+        .mvv-card i {
+            font-size: 1.8rem;
+            color: var(--azul-lunna-soft);
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+
+        .mvv-card h3 {
+            font-family: var(--font-title);
+            font-size: 1.1rem;
+            letter-spacing: 0.3em;
+            margin-bottom: 1.2rem;
+            color: var(--marfim-imperial);
+            font-weight: 400;
+        }
+
+        .mvv-card p {
+            font-size: 1.2rem;
+            color: var(--marfim-muted);
+            line-height: 1.6;
+        }
+
+        /* CONCIERGE */
+        .contact-section {
+            padding: 11rem 10%;
+            text-align: center;
+        }
+
+        .contact-card {
+            max-width: 780px;
+            margin: 0 auto;
+            background: rgba(2, 19, 41, 0.55);
+            border: 1px solid rgba(167, 235, 242, 0.12);
+            padding: 6rem 3.5rem;
+            backdrop-filter: blur(18px);
+            box-shadow: 0 50px 100px rgba(0,0,0,0.9);
+            position: relative;
+        }
+
+        .contact-card p.contact-desc {
+            font-size: 1.35rem;
+            color: var(--marfim-muted);
+            margin-bottom: 2.8rem;
+            line-height: 1.6;
+        }
+
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 1.2rem;
+            background: transparent;
+            color: var(--azul-lunna-light);
+            border: 1px solid var(--azul-lunna-soft);
+            padding: 1.2rem 3.8rem;
+            text-decoration: none;
+            font-size: 0.72rem;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            font-weight: 400;
+            transition: all 0.5s ease;
+        }
+
+        .whatsapp-btn:hover {
+            background: var(--azul-lunna-light);
+            color: var(--azul-lunna-abyssal);
+            box-shadow: 0 0 40px rgba(167, 235, 242, 0.35);
+        }
+
+        /* BOTÃO DE ÁUDIO CIRCULAR SOMENTE COM ÍCONE */
+        .maison-audio-player {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(1, 11, 24, 0.85);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(167, 235, 242, 0.25);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            transition: all 0.4s ease;
+        }
+
+        .maison-audio-player:hover {
+            border-color: var(--azul-lunna-light);
+            box-shadow: 0 0 25px rgba(167, 235, 242, 0.3);
+            transform: scale(1.05);
+        }
+
+        .audio-toggle-btn {
+            background: transparent;
+            border: none;
+            color: var(--azul-lunna-light);
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* MODAL DE PESQUISA EM TEMPO REAL */
+        .search-modal-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background: rgba(1, 11, 24, 0.94);
+            backdrop-filter: blur(25px);
+            z-index: 2050;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 9vh;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .search-modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .search-box-wrapper {
+            width: 82%;
+            max-width: 560px;
+            position: relative;
+        }
+
+        .search-input-box {
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid var(--azul-lunna-soft);
+            padding-bottom: 0.6rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .search-input-box i {
+            font-size: 1.2rem;
+            color: var(--azul-lunna-soft);
+            margin-right: 0.9rem;
+        }
+
+        .search-input-box input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            color: var(--marfim-imperial);
+            font-family: var(--font-editorial);
+            font-style: italic;
+            font-size: 1.3rem;
+            outline: none;
+        }
+
+        .search-input-box input::placeholder {
+            color: rgba(247, 245, 240, 0.3);
+        }
+
+        .search-results-box {
+            max-height: 55vh;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            padding-right: 0.5rem;
+        }
+
+        .search-results-box::-webkit-scrollbar { width: 4px; }
+        .search-results-box::-webkit-scrollbar-thumb { background: var(--azul-lunna-soft); }
+
+        .search-result-item {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            padding: 1rem 1.5rem;
+            background: rgba(2, 20, 41, 0.5);
+            border: 1px solid rgba(167, 235, 242, 0.08);
+            text-decoration: none;
+            color: var(--marfim-imperial);
+            transition: all 0.4s ease;
+        }
+
+        .search-result-item:hover {
+            border-color: var(--azul-lunna-light);
+            background: rgba(2, 25, 54, 0.8);
+            transform: translateX(6px);
+        }
+
+        .search-result-img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border: 1px solid rgba(167, 235, 242, 0.1);
+        }
+
+        .search-result-info h4 {
+            font-family: var(--font-title);
+            font-size: 1rem;
+            letter-spacing: 0.15em;
+            margin-bottom: 0.2rem;
+            color: var(--marfim-imperial);
+        }
+
+        .search-result-info p {
+            font-size: 0.85rem;
+            color: var(--azul-lunna-soft);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+
+        .search-empty-msg {
+            font-family: var(--font-editorial);
+            font-style: italic;
+            font-size: 1.3rem;
+            color: var(--marfim-muted);
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* CATALOGO POR CATEGORIA */
+        .category-catalog-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 2100;
+            background: rgba(1, 11, 24, 0.97);
+            backdrop-filter: blur(24px);
+            padding: 7rem 7% 4rem;
+            overflow-y: auto;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(12px);
+            transition: all 0.45s ease;
+        }
+
+        .category-catalog-overlay.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .category-catalog-header {
+            max-width: 1180px;
+            margin: 0 auto 3rem;
+            text-align: center;
+        }
+
+        .category-catalog-kicker {
+            color: var(--azul-lunna-soft);
+            font-size: 0.65rem;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+        }
+
+        .category-catalog-title {
+            margin: 0.8rem 0;
+            color: var(--marfim-imperial);
+            font-family: var(--font-title);
+            font-size: 2rem;
+            font-weight: 400;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+
+        .category-catalog-subtitle {
+            color: var(--marfim-muted);
+            font-family: var(--font-editorial);
+            font-size: 1.25rem;
+            font-style: italic;
+        }
+
+        .category-catalog-grid {
+            max-width: 1180px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .category-catalog-grid.accessories-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+            max-width: 1280px;
+        }
+
+        .accessories-section {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            padding: 1.3rem 0;
+            border-top: 1px solid rgba(167, 235, 242, 0.08);
+        }
+
+        .accessories-section:first-child {
+            border-top: none;
+        }
+
+        .accessories-header {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .accessories-header h3 {
+            margin: 0;
+            font-family: var(--font-title);
+            font-size: 1.1rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--marfim-imperial);
+            font-weight: 400;
+        }
+
+        .accessories-header p {
+            margin: 0;
+            font-family: var(--font-editorial);
+            font-style: italic;
+            color: var(--marfim-muted);
+            font-size: 1.05rem;
+        }
+
+        .accessories-carousel {
+            position: relative;
+            overflow: hidden;
+            padding: 0.3rem 0;
+        }
+
+        .accessories-carousel::before,
+        .accessories-carousel::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 80px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .accessories-carousel::before {
+            left: 0;
+            background: linear-gradient(90deg, rgba(1, 11, 24, 0.95), rgba(1, 11, 24, 0));
+        }
+
+        .accessories-carousel::after {
+            right: 0;
+            background: linear-gradient(270deg, rgba(1, 11, 24, 0.95), rgba(1, 11, 24, 0));
+        }
+
+        .accessories-track {
+            display: flex;
+            gap: 1.2rem;
+            width: max-content;
+            animation: accessoriesScroll 42s linear infinite;
+        }
+
+        .accessories-carousel:hover .accessories-track {
+            animation-play-state: paused;
+        }
+
+        @keyframes accessoriesScroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        .accessory-card {
+            width: min(22vw, 280px);
+            min-width: 240px;
+            background: rgba(2, 20, 41, 0.62);
+            border: 1px solid rgba(167, 235, 242, 0.1);
+            padding: 0.7rem;
+            transition: border-color 0.35s ease, transform 0.35s ease;
+        }
+
+        .accessory-card:hover {
+            border-color: rgba(167, 235, 242, 0.45);
+            transform: translateY(-4px);
+        }
+
+        .accessory-card img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            background: #010812;
+        }
+
+        .accessory-card-info {
+            padding: 0.9rem 0.2rem 0.15rem;
+        }
+
+        .accessory-card-info span {
+            display: block;
+            color: var(--azul-lunna-soft);
+            font-size: 0.54rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+        }
+
+        .accessory-card-info h4 {
+            margin: 0.5rem 0;
+            color: var(--marfim-imperial);
+            font-family: var(--font-title);
+            font-size: 0.92rem;
+            letter-spacing: 0.08em;
+            font-weight: 400;
+        }
+
+        .accessory-card-info p {
+            margin: 0 0 1rem;
+            color: var(--marfim-muted);
+            font-family: var(--font-editorial);
+            font-style: italic;
+            line-height: 1.35;
+            font-size: 0.98rem;
+        }
+
+        .accessory-card-quote {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.65rem;
+            color: var(--marfim-muted);
+            font-size: 0.54rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .accessory-card-quote::after {
+            content: '→';
+            color: var(--azul-lunna-light);
+            transition: transform 0.3s ease;
+        }
+
+        .accessory-card-quote:hover {
+            color: var(--azul-lunna-light);
+        }
+
+        .accessory-card-quote:hover::after {
+            transform: translateX(5px);
+        }
+
+        .category-product-card {
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            background: rgba(2, 20, 41, 0.62);
+            border: 1px solid rgba(167, 235, 242, 0.1);
+            padding: 0.8rem;
+            transition: border-color 0.35s ease, transform 0.35s ease;
+        }
+
+        .category-product-card:hover {
+            border-color: rgba(167, 235, 242, 0.45);
+            transform: translateY(-4px);
+        }
+
+        .category-product-image {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            background: #010812;
+        }
+
+        .category-product-info {
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            padding: 1rem 0.35rem 0.35rem;
+        }
+
+        .category-product-number {
+            color: var(--azul-lunna-soft);
+            font-size: 0.58rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+        }
+
+        .category-product-name {
+            margin: 0.45rem 0;
+            color: var(--marfim-imperial);
+            font-family: var(--font-title);
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: 0.08em;
+        }
+
+        .category-product-description {
+            flex: 1;
+            margin-bottom: 1rem;
+            color: var(--marfim-muted);
+            font-family: var(--font-editorial);
+            font-size: 1rem;
+            font-style: italic;
+            line-height: 1.35;
+        }
+
+        .category-product-quote {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.65rem;
+            color: var(--marfim-muted);
+            font-size: 0.58rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .category-product-quote::after {
+            content: '→';
+            color: var(--azul-lunna-light);
+            font-size: 0.9rem;
+            transition: transform 0.3s ease;
+        }
+
+        .category-product-quote:hover {
+            color: var(--azul-lunna-light);
+        }
+
+        .category-product-quote:hover::after {
+            transform: translateX(5px);
+        }
+
+        @media (max-width: 600px) {
+            .category-catalog-overlay { padding: 6rem 1rem 2rem; }
+            .category-catalog-title { font-size: 1.45rem; letter-spacing: 0.12em; }
+            .category-catalog-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.8rem; }
+            .category-product-card { padding: 0.55rem; }
+            .category-product-name { font-size: 0.72rem; }
+            .category-product-description { font-size: 0.9rem; }
+            .category-product-quote { font-size: 0.5rem; letter-spacing: 0.1em; }
+        }
+
+        /* MODAL DE LOGIN DA CONTA */
+        .login-modal-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background: rgba(1, 11, 24, 0.9);
+            backdrop-filter: blur(20px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .login-modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .login-modal-box {
+            background: var(--azul-lunna-abyssal);
+            border: 1px solid rgba(167, 235, 242, 0.15);
+            width: 90%;
+            max-width: 460px;
+            padding: 4.5rem 3rem;
+            position: relative;
+            box-shadow: 0 60px 120px rgba(0,0,0,0.95);
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 25px; right: 25px;
+            background: transparent;
+            border: none;
+            font-size: 1.2rem;
+            color: var(--marfim-muted);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .modal-close-btn:hover { color: var(--marfim-imperial); }
+
+        .login-modal-title {
+            font-family: var(--font-title);
+            font-size: 1.6rem;
+            color: var(--marfim-imperial);
+            text-align: center;
+            letter-spacing: 0.25em;
+            margin-bottom: 0.8rem;
+            font-weight: 400;
+        }
+
+        .login-modal-sub {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--marfim-muted);
+            margin-bottom: 2.8rem;
+        }
+
+        .form-group { margin-bottom: 2rem; }
+
+        .form-group label {
+            display: block;
+            font-size: 0.65rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--azul-lunna-soft);
+            margin-bottom: 0.6rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 1.1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(167, 235, 242, 0.15);
+            color: var(--marfim-imperial);
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            outline: none;
+            transition: border-color 0.4s ease;
+        }
+
+        .form-group input:focus { border-color: var(--azul-lunna-light); }
+
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: var(--marfim-muted);
+            margin-bottom: 2.5rem;
+        }
+
+        .form-actions a { color: var(--azul-lunna-soft); text-decoration: none; }
+
+        .btn-login-submit {
+            width: 100%;
+            padding: 1.2rem;
+            background: var(--azul-lunna-deep);
+            color: var(--azul-lunna-light);
+            border: 1px solid var(--azul-lunna-soft);
+            font-family: var(--font-sans);
+            font-size: 0.72rem;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .btn-login-submit:hover {
+            background: var(--azul-lunna-light);
+            color: var(--azul-lunna-abyssal);
+        }
+
+        /* FOOTER DE LUXO */
+        footer {
+            padding: 5rem 8% 4rem;
+            background-color: #00040A;
+            border-top: 1px solid rgba(167, 235, 242, 0.05);
+            color: var(--marfim-muted);
+            text-align: center;
+            font-size: 0.72rem;
+            letter-spacing: 0.25em;
+            position: relative;
+            z-index: 3;
+        }
+
+        .footer-logo-box {
+            margin-bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 900px) {
+            .about-grid, .mvv-container { grid-template-columns: 1fr; }
+            .hero-title { font-size: 3rem; }
+            nav ul { display: none; }
+            .hero-prism-container { width: 91%; height: 490px; min-height: 0; }
+            .hero-content { padding-left: 1rem; padding-right: 1rem; }
+            .hero-maison-tag { letter-spacing: 0.42em; }
+            .hero-subtitle { letter-spacing: 0.25em; line-height: 2; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HALO DE LUZ REFRATIVA DO CURSOR -->
+    <div class="cursor-light" id="cursorLight"></div>
+
+    <!-- FUNDO DE CÁUSTICA / MAR (AZUL L U N N A) -->
+    <div class="water-bg-overlay">
+        <img src="mar.jpg" id="bgMarImg" alt="Efeito do Mar LUNNA" 
+             onerror="if (!this.tried) { this.tried=1; this.src='mar.gif'; } else if (this.tried===1) { this.tried=2; this.src='mar.png'; } else if (this.tried===2) { this.tried=3; this.src='mar.jpeg'; }">
+    </div>
+
+    <!-- ÁDIO LOCAL DA MAISON (AUDIO.MP3 - AUTOPLAY COM VOLUME A 25%) -->
+    <audio id="maisonAudio" loop preload="auto" autoplay>
+        <source src="audio.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- BOTÃO CIRCULAR DISCRETO (SOMENTE O SÍMBOLO) -->
+    <div class="maison-audio-player">
+        <button class="audio-toggle-btn" id="audioToggleBtn" title="Mutar/Ativar Som da Maison">
+            <i class="fa-solid fa-volume-high" id="audioIcon"></i>
+        </button>
+    </div>
+
+    <div class="page-content">
+
+        <!-- HEADER DA MAISON -->
+        <header>
+            <div class="header-left">
+                <!-- BOTÃO CATEGORIAS -->
+                <div class="category-menu-wrapper">
+                    <button class="hamburger-btn" id="categoryMenuBtn" aria-label="Menu de Categorias">
+                        <div class="hamburger-icon">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <span class="hamburger-text" data-i18n="categories">Categorias</span>
+                    </button>
+
+                    <!-- DROPDOWN CATEGORIAS EM ORDEM ALFABÉTICA -->
+                    <div class="category-dropdown" id="categoryDropdown">
+                        <ul>
+                            <li><a href="#acessorios" class="category-link" data-category="Acessórios"><span data-i18n="categoryAccessories">Acessórios</span> <i class="fa-solid fa-chevron-right"></i></a></li>
+                            <li><a href="#aneis" class="category-link" data-category="Anéis"><span data-i18n="categoryRings">Anéis</span> <i class="fa-solid fa-chevron-right"></i></a></li>
+                            <li><a href="#brincos" class="category-link" data-category="Brincos"><span data-i18n="categoryEarrings">Brincos</span> <i class="fa-solid fa-chevron-right"></i></a></li>
+                            <li><a href="#casamentos" class="category-link" data-category="Casamentos"><span data-i18n="categoryWeddings">Casamentos</span> <i class="fa-solid fa-chevron-right"></i></a></li>
+                            <li><a href="#colares" class="category-link" data-category="Colares"><span data-i18n="categoryNecklaces">Colares</span> <i class="fa-solid fa-chevron-right"></i></a></li>
+                            <li><a href="#femininos" class="category-link" data-category="Femininos"><span data-i18n="categoryWomen">Femininos</span> <i class="fa-solid fa-chevron-right"></i></a></li>
+                            <li><a href="#masculinos" class="category-link" data-category="Masculinos"><span data-i18n="categoryMen">Masculino</span> <i class="fa-solid fa-chevron-right"></i></a></li>
+                            <li><a href="#presentes" class="category-link" data-category="Presentes"><span data-i18n="categoryGifts">Presentes</span> <i class="fa-solid fa-chevron-right"></i></a></li>
+                            <li><a href="#pulseiras" class="category-link" data-category="Pulseiras"><span data-i18n="categoryBracelets">Pulseiras</span> <i class="fa-solid fa-chevron-right"></i></a></li>
+                            <li><a href="#relogios" class="category-link" data-category="Relógios"><span data-i18n="categoryWatches">Relógios</span> <i class="fa-solid fa-chevron-right"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- LOGO EXCLUSIVAMENTE EM TEXTO L U N N A -->
+                <a href="#" class="logo-text">L U N N A</a>
+            </div>
+
+            <div class="header-right">
+                <nav>
+                    <ul>
+                        <li><a href="#collections" data-i18n="navCollections">Collections</a></li>
+                        <li><a href="#house" data-i18n="navHouse">The House</a></li>
+                        <li><a href="#concierge" data-i18n="navConcierge">Concierge</a></li>
+                    </ul>
+                </nav>
+
+                <div class="language-switcher">
+                    <label for="languageSelect" class="sr-only" style="position:absolute;left:-9999px;">Idioma</label>
+                    <select id="languageSelect" aria-label="Selecionar idioma">
+                        <option value="pt-BR">Português (Brasil)</option>
+                        <option value="es">Español</option>
+                        <option value="en">English</option>
+                    </select>
+                </div>
+
+                <!-- LUPA DE PESQUISA ATIVA -->
+                <button class="search-btn" id="openSearchBtn" title="Pesquisa Privada">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+
+                <button class="login-nav-btn" id="openLoginBtn">
+                    <i class="fa-regular fa-user"></i> Conta
+                </button>
+            </div>
+        </header>
+
+        <!-- HERO SECTION COM RETÂNGULO ESTÁTICO DE VIDRO JATEADO -->
+        <section id="inicio" class="hero">
+            <div class="hero-prism-container">
+                <!-- RETÂNGULO DE VIDRO FOSCO ESTÁTICO -->
+                <div class="hero-prism"></div>
+            </div>
+
+            <div class="hero-content fade-in-up">
+                <p class="hero-maison-tag" data-i18n="heroTag">L U N N A &nbsp; | &nbsp; HAUTE JOAILLERIE</p>
+                <h1 class="hero-title" data-i18n="heroTitle">A luz da noite, eternizada.</h1>
+                <p class="hero-subtitle" data-i18n="heroSubtitle">Safiras excepcionais. Diamantes extraordinários.</p>
+                
+                <a href="#collections" class="btn-editorial" data-i18n="heroCta">EXPLORAR A COLEÇÃO</a>
+                
+                <div class="brand-signature" data-i18n="brandSignature">The Art of Rarity</div>
+            </div>
+
+        </section>
+
+        <!-- LUNNA COLLECTIONS -->
+        <section id="collections">
+            <div class="section-header fade-in-up">
+                <h2 class="section-title" data-i18n="collectionsTitle">LUNNA Collections</h2>
+                <p class="section-subtitle-text desc-garamond-italic" data-i18n="collectionsSubtitle">Gemas azuis e diamantes brancos raros, lapidados para a alta sociedade</p>
+            </div>
+
+            <div class="carousel-container fade-in-up">
+                <div class="carousel-track" id="carouselTrack">
+                    <!-- 1. SAFIRA AZUL -->
+                    <div class="jewel-card">
+                        <div class="jewel-img-box">
+                            <span class="jewel-badge">Signature</span>
+                            <img src="Anéis/1.jpg" alt="Anel de Safira Azul LUNNA">
+                        </div>
+                        <div class="jewel-info">
+                            <span class="jewel-gem-name">Safira Azul</span>
+                            <h3 class="jewel-title">Anel Majestoso Royal Blue</h3>
+                            <p class="jewel-desc desc-garamond-italic">Gema clássica de alta dureza, famosa pelo seu azul profundo e real.</p>
+                            <a href="https://wa.me/5511974866465?text=Ol%C3%A1%20%F0%9F%98%8A.%20Vim%20atrav%C3%A9s%20do%20site%20da%20*L%20U%20N%20N%20A*%20conhecer%20um%20pouco%20mais%20sobre%20seus%20projetos%20e%20cria%C3%A7%C3%A3o%20de%20plataformas%20digitais!" target="_blank" class="jewel-quote-btn">Solicitar orçamento</a>
+                        </div>
+                    </div>
+
+                    <!-- 2. ÁGUA-MARINHA -->
+                    <div class="jewel-card">
+                        <div class="jewel-img-box">
+                            <span class="jewel-badge">Exceptional</span>
+                            <img src="Colares/1.jpg" alt="Colar de Água-Marinha LUNNA">
+                        </div>
+                        <div class="jewel-info">
+                            <span class="jewel-gem-name">Água-Marinha</span>
+                            <h3 class="jewel-title">Colar Ocean Whisper</h3>
+                            <p class="jewel-desc desc-garamond-italic">Apresenta um tom azul-claro ou esverdeado que lembra o mar.</p>
+                            <a href="https://wa.me/5511974866465?text=Ol%C3%A1%20%F0%9F%98%8A.%20Vim%20atrav%C3%A9s%20do%20site%20da%20*L%20U%20N%20N%20A*%20conhecer%20um%20pouco%20mais%20sobre%20seus%20projetos%20e%20cria%C3%A7%C3%A3o%20de%20plataformas%20digitais!" target="_blank" class="jewel-quote-btn">Solicitar orçamento</a>
+                        </div>
+                    </div>
+
+                    <!-- 3. TOPÁZIO AZUL -->
+                    <div class="jewel-card">
+                        <div class="jewel-img-box">
+                            <span class="jewel-badge">Rare</span>
+                            <img src="Anéis/2.jpg" alt="Pingente de Topázio Azul LUNNA">
+                        </div>
+                        <div class="jewel-info">
+                            <span class="jewel-gem-name">Topázio Azul</span>
+                            <h3 class="jewel-title">Pingente London Imperial</h3>
+                            <p class="jewel-desc desc-garamond-italic">Muito versátil, encontrado em tons claros (Sky) ou intensos (London).</p>
+                            <a href="https://wa.me/5511974866465?text=Ol%C3%A1%20%F0%9F%98%8A.%20Vim%20atrav%C3%A9s%20do%20site%20da%20*L%20U%20N%20N%20A*%20conhecer%20um%20pouco%20mais%20sobre%20seus%20projetos%20e%20cria%C3%A7%C3%A3o%20de%20plataformas%20digitais!" target="_blank" class="jewel-quote-btn">Solicitar orçamento</a>
+                        </div>
+                    </div>
+
+                    <!-- 4. TANZANITA -->
+                    <div class="jewel-card">
+                        <div class="jewel-img-box">
+                            <span class="jewel-badge">Rarity</span>
+                            <img src="Brincos/1.jpg" alt="Brincos de Tanzanita LUNNA">
+                        </div>
+                        <div class="jewel-info">
+                            <span class="jewel-gem-name">Tanzanita</span>
+                            <h3 class="jewel-title">Brincos Velvet Violet</h3>
+                            <p class="jewel-desc desc-garamond-italic">Exibe nuances azuladas e violetas únicas.</p>
+                            <a href="https://wa.me/5511974866465?text=Ol%C3%A1%20%F0%9F%98%8A.%20Vim%20atrav%C3%A9s%20do%20site%20da%20*L%20U%20N%20N%20A*%20conhecer%20um%20pouco%20mais%20sobre%20seus%20projetos%20e%20cria%C3%A7%C3%A3o%20de%20plataformas%20digitais!" target="_blank" class="jewel-quote-btn">Solicitar orçamento</a>
+                        </div>
+                    </div>
+
+                    <!-- 5. TURMALINA PARAÍBA -->
+                    <div class="jewel-card">
+                        <div class="jewel-img-box">
+                            <span class="jewel-badge">Private</span>
+                            <img src="Anéis/3.jpg" alt="Anel Turmalina Paraíba LUNNA">
+                        </div>
+                        <div class="jewel-info">
+                            <span class="jewel-gem-name">Turmalina Paraíba</span>
+                            <h3 class="jewel-title">Anel Electric Neon</h3>
+                            <p class="jewel-desc desc-garamond-italic">Conhecida pelo tom azul elétrico altamente neon e raro.</p>
+                            <a href="https://wa.me/5511974866465?text=Ol%C3%A1%20%F0%9F%98%8A.%20Vim%20atrav%C3%A9s%20do%20site%20da%20*L%20U%20N%20N%20A*%20conhecer%20um%20pouco%20mais%20sobre%20seus%20projetos%20e%20cria%C3%A7%C3%A3o%20de%20plataformas%20digitais!" target="_blank" class="jewel-quote-btn">Solicitar orçamento</a>
+                        </div>
+                    </div>
+
+                    <!-- 6. DIAMANTE AZUL -->
+                    <div class="jewel-card">
+                        <div class="jewel-img-box">
+                            <span class="jewel-badge">Heritage</span>
+                            <img src="Anéis/4.jpg" alt="Solitário de Diamante Azul L U N N A">
+                        </div>
+                        <div class="jewel-info">
+                            <span class="jewel-gem-name">Diamante Azul</span>
+                            <h3 class="jewel-title">Solitário Blue Diamond Supreme</h3>
+                            <p class="jewel-desc desc-garamond-italic">Uma das pedras mais raras e valiosas do mundo.</p>
+                            <a href="https://wa.me/5511974866465?text=Ol%C3%A1%20%F0%9F%98%8A.%20Vim%20atrav%C3%A9s%20do%20site%20da%20*L%20U%20N%20N%20A*%20conhecer%20um%20pouco%20mais%20sobre%20seus%20projetos%20e%20cria%C3%A7%C3%A3o%20de%20plataformas%20digitais!" target="_blank" class="jewel-quote-btn">Solicitar orçamento</a>
+                        </div>
+                    </div>
+
+                    <!-- 7. LÁPIS-LAZÚLI -->
+                    <div class="jewel-card">
+                        <div class="jewel-img-box">
+                            <span class="jewel-badge">Royal</span>
+                            <img src="Colares/2.jpg" alt="Gargantilha de Lápis-Lazúli LUNNA">
+                        </div>
+                        <div class="jewel-info">
+                            <span class="jewel-gem-name">Lápis-Lazúli</span>
+                            <h3 class="jewel-title">Gargantilha Gold & Blue Stardust</h3>
+                            <p class="jewel-desc desc-garamond-italic">Pedra opaca com um azul forte salpicado de dourado.</p>
+                            <a href="https://wa.me/5511974866465?text=Ol%C3%A1%20%F0%9F%98%8A.%20Vim%20atrav%C3%A9s%20do%20site%20da%20*L%20U%20N%20N%20A*%20conhecer%20um%20pouco%20mais%20sobre%20seus%20projetos%20e%20cria%C3%A7%C3%A3o%20de%20plataformas%20digitais!" target="_blank" class="jewel-quote-btn">Solicitar orçamento</a>
+                        </div>
+                    </div>
+
+                    <!-- 8. TURQUESA -->
+                    <div class="jewel-card">
+                        <div class="jewel-img-box">
+                            <span class="jewel-badge">Crafted</span>
+                            <img src="Pulseiras/1.jpg" alt="Bracelete de Turquesa LUNNA">
+                        </div>
+                        <div class="jewel-info">
+                            <span class="jewel-gem-name">Turquesa</span>
+                            <h3 class="jewel-title">Bracelete Royalty Heritage</h3>
+                            <p class="jewel-desc desc-garamond-italic">Tom azul-esverdeado com aspecto terroso muito tradicional.</p>
+                            <a href="https://wa.me/5511974866465?text=Ol%C3%A1%20%F0%9F%98%8A.%20Vim%20atrav%C3%A9s%20do%20site%20da%20*L%20U%20N%20N%20A*%20conhecer%20um%20pouco%20mais%20sobre%20seus%20projetos%20e%20cria%C3%A7%C3%A3o%20de%20plataformas%20digitais!" target="_blank" class="jewel-quote-btn">Solicitar orçamento</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- THE HOUSE -->
+        <section id="house" class="about-section">
+            <div class="section-header fade-in-up">
+                <h2 class="section-title" data-i18n="houseTitle">The House</h2>
+            </div>
+
+            <div class="about-grid">
+                <div class="about-text fade-in-up">
+                    <p class="desc-garamond-italic">Nascida com o propósito de adornar os nomes mais influentes e seletos da alta sociedade, a <strong>Maison L U N N A</strong> é uma autoridade global em Haute Joaillerie especializada na aura magnética das <strong>gemas azuis e diamantes brancos</strong>. Cada criação é esculpida para imortalizar o azul noturno e a luz eterna.</p>
+                    
+                    <p class="desc-garamond-italic">Nossa maior inspiração repousa no legado imortal de <strong>Coco Chanel</strong>, visionária que eternizou a joia não como um mero adorno, mas como uma manifestação soberana de independência, elegância autêntica e refinado poder pessoal.</p>
+
+                    <div class="about-quote desc-garamond-italic">
+                        "O luxo não é o oposto da pobreza, mas sim o oposto da vulgaridade."
+                        <br><small style="color: var(--azul-lunna-soft); font-style: normal; font-size: 0.85rem; font-weight: 500; font-family: var(--font-sans);">— Inspiração Coco Chanel</small>
+                    </div>
+                </div>
+
+                <div class="fade-in-up">
+                    <h3 style="font-family: var(--font-title); font-size: 1.1rem; color: var(--marfim-imperial); text-transform: uppercase; letter-spacing: 0.3em; text-align: center; margin-bottom: 2rem; font-weight: 400;">Nossos 5 Pilares</h3>
+                    <div class="acronym-container">
+                        <div class="acronym-card">
+                            <span class="acronym-letter">L</span>
+                            <span class="acronym-word">Luxo</span>
+                        </div>
+                        <div class="acronym-card">
+                            <span class="acronym-letter">U</span>
+                            <span class="acronym-word">Unicidade</span>
+                        </div>
+                        <div class="acronym-card">
+                            <span class="acronym-letter">N</span>
+                            <span class="acronym-word">Nobreza</span>
+                        </div>
+                        <div class="acronym-card">
+                            <span class="acronym-letter">N</span>
+                            <span class="acronym-word">Notabilidade</span>
+                        </div>
+                        <div class="acronym-card" style="grid-column: span 2;">
+                            <span class="acronym-letter">A</span>
+                            <span class="acronym-word">Autenticidade</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MISSÃO, VISÃO E VALORES DA MAISON -->
+            <div class="mvv-container">
+                <div class="mvv-card fade-in-up">
+                    <i class="fa-solid fa-crown"></i>
+                    <h3>Missão</h3>
+                    <p class="desc-garamond-italic">Proporcionar uma experiência inigualável aos nossos clientes de alto padrão, garantindo que se sintam absolutamente maravilhosos, confiantes e soberanos ao vestir as joias L U N N A.</p>
+                </div>
+                <div class="mvv-card fade-in-up">
+                    <i class="fa-solid fa-gem"></i>
+                    <h3>Visão</h3>
+                    <p class="desc-garamond-italic">Ser a autoridade máxima global em alta joalheria especializada em pedras azuis e diamantes brancos, reconhecida pela raridade absoluta e eternidade das peças.</p>
+                </div>
+                <div class="mvv-card fade-in-up">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <h3>Valores</h3>
+                    <p class="desc-garamond-italic">Excelência artesanal inegociável, máxima discrição, fidelidade aos pilares L.U.N.N.A e dedicação integral à plena satisfação dos nossos clientes.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONCIERGE -->
+        <section id="concierge" class="contact-section">
+            <div class="section-header fade-in-up">
+                <h2 class="section-title" data-i18n="conciergeTitle">Concierge</h2>
+            </div>
+
+            <div class="contact-card fade-in-up">
+                <p style="letter-spacing: 0.35em; text-transform: uppercase; color: var(--azul-lunna-soft); font-size: 0.7rem; font-weight: 500; margin-bottom: 1rem;" data-i18n="privateConsultation">Private Consultation</p>
+                <h3 style="font-family: var(--font-title); font-size: 1.8rem; margin-bottom: 1.5rem; color: var(--marfim-imperial); font-weight: 400; letter-spacing: 0.1em;" data-i18n="conciergeHeading">Solicite um Atendimento Personalizado</h3>
+                <p class="contact-desc desc-garamond-italic" data-i18n="conciergeText">Atendemos nossa seleta clientela sob total discrição. Entre em contato diretamente com o nosso Concierge privativo via WhatsApp.</p>
+
+                <a href="https://wa.me/5511974866465?text=Olá.%20Vim%20através%20do%20site%20da%20LUNNA%20conhecer%20um%20pouco%20mais%20sobre%20seus%20projetos%20e%20criação%20de%20sites!" target="_blank" class="whatsapp-btn" data-i18n="conciergeButton">
+                    <i class="fa-brands fa-whatsapp" style="font-size: 1.2rem;"></i>
+                    Atendimento Concierge
+                </a>
+            </div>
+        </section>
+
+        <!-- FOOTER COM LOGO EM TEXTO -->
+        <footer>
+            <div class="footer-logo-box">
+                <div style="font-family: var(--font-title); font-size: 1.8rem; letter-spacing: 0.5em; color: var(--marfim-imperial);">L U N N A</div>
+                <div class="brand-signature" style="font-size: 0.85rem; margin-top: 0.3rem;">The Art of Rarity</div>
+            </div>
+
+            <p>&copy; 2026 L U N N A Haute Joaillerie. Todos os direitos reservados. Experiência de Luxo Reservada.</p>
+            <p style="margin-top: 0.8rem; font-size: 0.7rem; color: var(--azul-lunna-soft); letter-spacing: 0.1em; opacity: 0.8; font-weight: 300;">
+                <i class="fa-solid fa-circle-info" style="margin-right: 4px;"></i> 
+                <strong>Nota Acadêmica:</strong> Este site é uma demonstração simbólica desenvolvida exclusivamente para fins didáticos na disciplina de Desenvolvimento de Sistemas.
+            </p>
+        </footer>
+
+    </div>
+
+    <!-- MODAL DE PESQUISA EM TEMPO REAL -->
+    <div class="search-modal-overlay" id="searchModal">
+        <button class="modal-close-btn" id="closeSearchBtn"><i class="fa-solid fa-xmark"></i></button>
+        <div class="search-box-wrapper">
+            <div class="search-input-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="searchInput" data-i18n-placeholder="searchPlaceholder" placeholder="Pesquisar na Maison L U N N A..." autocomplete="off">
+            </div>
+            <div class="search-results-box" id="searchResults">
+                <p class="search-empty-msg" data-i18n="searchEmpty">Digite o nome de uma joia, gema ou categoria (ex: Safira, Diamante, Anel)...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- CATALOGO DE PRODUTOS POR CATEGORIA -->
+    <div class="category-catalog-overlay" id="categoryCatalog" aria-hidden="true">
+        <button class="modal-close-btn" id="closeCategoryCatalog" aria-label="Fechar catálogo"><i class="fa-solid fa-xmark"></i></button>
+        <div class="category-catalog-header">
+            <span class="category-catalog-kicker" data-i18n="reservedCollection">Coleção reservada</span>
+            <h2 class="category-catalog-title" id="categoryCatalogTitle"></h2>
+            <p class="category-catalog-subtitle" id="categoryCatalogSubtitle"></p>
+        </div>
+        <div class="category-catalog-grid" id="categoryCatalogGrid"></div>
+    </div>
+
+    <!-- MODAL DE LOGIN ÁREA PRIVATIVA -->
+    <div class="login-modal-overlay" id="loginModal">
+        <div class="login-modal-box">
+            <button class="modal-close-btn" id="closeLoginBtn"><i class="fa-solid fa-xmark"></i></button>
+            <h2 class="login-modal-title">Área Privativa</h2>
+            <p class="login-modal-sub desc-garamond-italic">Acesse seu perfil de cliente VIP LUNNA</p>
+            
+            <form onsubmit="event.preventDefault(); alert('Login efetuado com sucesso (Demonstração acadêmica)!');">
+                <div class="form-group">
+                    <label for="email" data-i18n="emailLabel">E-mail ou Código VIP</label>
+                    <input type="email" id="email" placeholder="seuemail@exemplo.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="password" data-i18n="passwordLabel">Senha</label>
+                    <input type="password" id="password" placeholder="••••••••" required>
+                </div>
+                <div class="form-actions">
+                    <label><input type="checkbox"> <span data-i18n="remember">Lembrar acesso</span></label>
+                    <a href="#" data-i18n="forgot">Esqueceu a senha?</a>
+                </div>
+                <button type="submit" class="btn-login-submit" data-i18n="loginButton">Entrar na Conta</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- SCRIPTS DE MICROINTERAÇÕES, ÁUDIO LOCAL, BUSCA E CARROSSEL -->
+    <script>
+        const translations = {
+            'pt-BR': {
+                pageTitle: 'L U N N A | Haute Joaillerie',
+                categories: 'Categorias',
+                categoryAccessories: 'Acessórios',
+                categoryRings: 'Anéis',
+                categoryEarrings: 'Brincos',
+                categoryWeddings: 'Casamentos',
+                categoryNecklaces: 'Colares',
+                categoryWomen: 'Femininos',
+                categoryMen: 'Masculino',
+                categoryGifts: 'Presentes',
+                categoryBracelets: 'Pulseiras',
+                categoryWatches: 'Relógios',
+                requestQuote: 'Solicitar orçamento',
+                reservedCollection: 'Coleção reservada',
+                creationsAvailable: 'criações disponíveis.',
+                productDescription: 'Criação exclusiva em {material}, pensada para destacar a raridade da Maison.',
+                materials: ['ouro branco 18k e safira azul', 'ouro amarelo 18k e diamantes', 'platina e topázio azul', 'ouro branco 18k e acabamento polido'],
+                categorySubtitles: {
+                    'Acessórios': 'Descubra os mais refinados itens da Maison em coleções selecionadas.',
+                    'Anéis': 'Anéis com presença, brilho e proporções que elevam cada gesto.',
+                    'Brincos': 'Silhuetas luminosas para acompanhar cada gesto com discrição.',
+                    'Casamentos': 'Coleções de celebração com colares, brincos e anéis em composição elegante.',
+                    'Colares': 'Arquiteturas delicadas que repousam sobre a pele como uma assinatura.',
+                    'Femininos': 'Peças femininas com brilho, sofisticação e presença marcante.',
+                    'Masculinos': 'Peças masculinas em linhas fortes, elegantes e refinadas.',
+                    'Presentes': 'Seleção especial para presentear com exclusividade e distinção.',
+                    'Pulseiras': 'Volumes precisos e reflexos raros para envolver o pulso.',
+                    'Relógios': 'Cronografias exclusivas com presença, precisão e luxo discreto.'
+                },
+                navCollections: 'Coleções',
+                navHouse: 'A Casa',
+                navConcierge: 'Concierge',
+                account: 'Conta',
+                searchTitle: 'Pesquisa Privada',
+                heroTag: 'L U N N A | HAUTE JOAILLERIE',
+                heroTitle: 'A luz da noite, eternizada.',
+                heroSubtitle: 'Safiras excepcionais. Diamantes extraordinários.',
+                heroCta: 'EXPLORAR A COLEÇÃO',
+                brandSignature: 'The Art of Rarity',
+                collectionsTitle: 'Coleções LUNNA',
+                collectionsSubtitle: 'Gemas azuis e diamantes brancos raros, lapidados para a alta sociedade',
+                houseTitle: 'A Casa',
+                conciergeTitle: 'Concierge',
+                privateConsultation: 'Consulta Privada',
+                conciergeHeading: 'Solicite um Atendimento Personalizado',
+                conciergeText: 'Atendemos nossa seleta clientela sob total discrição. Entre em contato diretamente com o nosso Concierge privativo via WhatsApp.',
+                conciergeButton: 'Atendimento Concierge',
+                searchPlaceholder: 'Pesquisar na Maison L U N N A...',
+                searchEmpty: 'Digite o nome de uma joia, gema ou categoria (ex: Safira, Diamante, Anel)...',
+                noResults: 'Nenhuma joia encontrada na Maison para essa busca.',
+                loginTitle: 'Área Privativa',
+                loginSubtitle: 'Acesse seu perfil de cliente VIP LUNNA',
+                emailLabel: 'E-mail ou Código VIP',
+                passwordLabel: 'Senha',
+                remember: 'Lembrar acesso',
+                forgot: 'Esqueceu a senha?',
+                loginButton: 'Entrar na Conta'
+            },
+            es: {
+                pageTitle: 'L U N N A | Alta Joyería',
+                categories: 'Categorías',
+                categoryAccessories: 'Accesorios',
+                categoryRings: 'Anillos',
+                categoryEarrings: 'Pendientes',
+                categoryWeddings: 'Bodas',
+                categoryNecklaces: 'Collares',
+                categoryWomen: 'Femeninos',
+                categoryMen: 'Masculino',
+                categoryGifts: 'Regalos',
+                categoryBracelets: 'Pulseras',
+                categoryWatches: 'Relojes',
+                requestQuote: 'Solicitar presupuesto',
+                reservedCollection: 'Colección reservada',
+                creationsAvailable: 'creaciones disponibles.',
+                productDescription: 'Creación exclusiva en {material}, pensada para destacar la rareza de la Maison.',
+                materials: ['oro blanco de 18 quilates y zafiro azul', 'oro amarillo de 18 quilates y diamantes', 'platino y topacio azul', 'oro blanco de 18 quilates con acabado pulido'],
+                categorySubtitles: {
+                    'Acessórios': 'Descubra los artículos más refinados de la Maison en colecciones seleccionadas.',
+                    'Anéis': 'Anillos con presencia, brillo y proporciones que elevan cada gesto.',
+                    'Brincos': 'Siluetas luminosas para acompañar cada gesto con discreción.',
+                    'Casamentos': 'Colecciones de celebración con collares, pendientes y anillos en una composición elegante.',
+                    'Colares': 'Arquitecturas delicadas que descansan sobre la piel como una firma.',
+                    'Femininos': 'Piezas femeninas con brillo, sofisticación y presencia marcada.',
+                    'Masculinos': 'Piezas masculinas de líneas fuertes, elegantes y refinadas.',
+                    'Presentes': 'Selección especial para regalar con exclusividad y distinción.',
+                    'Pulseiras': 'Volúmenes precisos y reflejos raros para envolver la muñeca.',
+                    'Relógios': 'Cronografías exclusivas con presencia, precisión y lujo discreto.'
+                },
+                navCollections: 'Colecciones',
+                navHouse: 'La Casa',
+                navConcierge: 'Concierge',
+                account: 'Cuenta',
+                searchTitle: 'Búsqueda Privada',
+                heroTag: 'L U N N A | HAUTE JOAILLERIE',
+                heroTitle: 'La luz de la noche, eternizada.',
+                heroSubtitle: 'Safiras excepcionales. Diamantes extraordinarios.',
+                heroCta: 'EXPLORAR LA COLECCIÓN',
+                brandSignature: 'The Art of Rarity',
+                collectionsTitle: 'Colecciones LUNNA',
+                collectionsSubtitle: 'Gemas azules y diamantes blancos raros, tallados para la alta sociedad',
+                houseTitle: 'La Casa',
+                conciergeTitle: 'Concierge',
+                privateConsultation: 'Consulta Privada',
+                conciergeHeading: 'Solicite una atención personalizada',
+                conciergeText: 'Atendemos a nuestra selecta clientela bajo total discreción. Póngase en contacto directamente con nuestro Concierge privado por WhatsApp.',
+                conciergeButton: 'Atención Concierge',
+                searchPlaceholder: 'Buscar en la Maison L U N N A...',
+                searchEmpty: 'Escriba el nombre de una joya, gema o categoría (ej: Safira, Diamante, Anillo)...',
+                noResults: 'No se encontró ninguna joya en la Maison para esta búsqueda.',
+                loginTitle: 'Área Privada',
+                loginSubtitle: 'Acceda a su perfil de cliente VIP LUNNA',
+                emailLabel: 'Correo o Código VIP',
+                passwordLabel: 'Contraseña',
+                remember: 'Recordar acceso',
+                forgot: '¿Olvidó su contraseña?',
+                loginButton: 'Entrar en la cuenta'
+            },
+            en: {
+                pageTitle: 'L U N N A | Haute Joaillerie',
+                categories: 'Categories',
+                categoryAccessories: 'Accessories',
+                categoryRings: 'Rings',
+                categoryEarrings: 'Earrings',
+                categoryWeddings: 'Weddings',
+                categoryNecklaces: 'Necklaces',
+                categoryWomen: 'Women',
+                categoryMen: 'Men',
+                categoryGifts: 'Gifts',
+                categoryBracelets: 'Bracelets',
+                categoryWatches: 'Watches',
+                requestQuote: 'Request a quote',
+                reservedCollection: 'Reserved collection',
+                creationsAvailable: 'creations available.',
+                productDescription: 'Exclusive creation in {material}, designed to highlight the Maison’s rarity.',
+                materials: ['18k white gold and blue sapphire', '18k yellow gold and diamonds', 'platinum and blue topaz', '18k white gold with polished finish'],
+                categorySubtitles: {
+                    'Acessórios': 'Discover the Maison’s finest pieces in selected collections.',
+                    'Anéis': 'Rings with presence, brilliance, and proportions that elevate every gesture.',
+                    'Brincos': 'Luminous silhouettes to accompany every gesture with discretion.',
+                    'Casamentos': 'Celebration collections with necklaces, earrings, and rings in an elegant composition.',
+                    'Colares': 'Delicate architectures resting on the skin like a signature.',
+                    'Femininos': 'Feminine pieces with brilliance, sophistication, and striking presence.',
+                    'Masculinos': 'Men’s pieces with strong, elegant, and refined lines.',
+                    'Presentes': 'A special selection for gifting with exclusivity and distinction.',
+                    'Pulseiras': 'Precise volumes and rare reflections to embrace the wrist.',
+                    'Relógios': 'Exclusive chronographs with presence, precision, and discreet luxury.'
+                },
+                navCollections: 'Collections',
+                navHouse: 'The House',
+                navConcierge: 'Concierge',
+                account: 'Account',
+                searchTitle: 'Private Search',
+                heroTag: 'L U N N A | HAUTE JOAILLERIE',
+                heroTitle: 'The light of the night, eternalized.',
+                heroSubtitle: 'Exceptional sapphires. Extraordinary diamonds.',
+                heroCta: 'EXPLORE THE COLLECTION',
+                brandSignature: 'The Art of Rarity',
+                collectionsTitle: 'LUNNA Collections',
+                collectionsSubtitle: 'Rare blue gems and white diamonds, cut for the upper society',
+                houseTitle: 'The House',
+                conciergeTitle: 'Concierge',
+                privateConsultation: 'Private Consultation',
+                conciergeHeading: 'Request a Personalized Consultation',
+                conciergeText: 'We attend our select clientele with complete discretion. Contact our private Concierge directly via WhatsApp.',
+                conciergeButton: 'Concierge Service',
+                searchPlaceholder: 'Search the Maison L U N N A...',
+                searchEmpty: 'Type the name of a jewel, gem or category (ex: Sapphire, Diamond, Ring)...',
+                noResults: 'No jewel matching this search was found in the Maison.',
+                loginTitle: 'Private Area',
+                loginSubtitle: 'Access your LUNNA VIP client profile',
+                emailLabel: 'Email or VIP Code',
+                passwordLabel: 'Password',
+                remember: 'Remember access',
+                forgot: 'Forgot password?',
+                loginButton: 'Enter account'
+            }
+        };
+
+        const languageSelect = document.getElementById('languageSelect');
+        let currentLanguage = 'pt-BR';
+        let activeCategory = null;
+
+        function getCurrentDictionary() {
+            return translations[currentLanguage] || translations['pt-BR'];
+        }
+
+        function translateCategory(category) {
+            const dictionary = getCurrentDictionary();
+            const categoryKeys = {
+                'Acessórios': 'categoryAccessories', 'Anéis': 'categoryRings', 'Brincos': 'categoryEarrings',
+                'Casamentos': 'categoryWeddings', 'Colares': 'categoryNecklaces', 'Femininos': 'categoryWomen',
+                'Masculinos': 'categoryMen', 'Presentes': 'categoryGifts', 'Pulseiras': 'categoryBracelets',
+                'Relógios': 'categoryWatches'
+            };
+            return dictionary[categoryKeys[category]] || category;
+        }
+
+        function updateLanguageText(lang) {
+            const dictionary = translations[lang] || translations['pt-BR'];
+            currentLanguage = lang;
+            document.documentElement.lang = lang;
+            document.title = dictionary.pageTitle;
+
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.dataset.i18n;
+                if (dictionary[key]) {
+                    element.textContent = dictionary[key];
+                }
+            });
+
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+                const key = element.dataset.i18nPlaceholder;
+                if (dictionary[key]) {
+                    element.placeholder = dictionary[key];
+                }
+            });
+
+            document.querySelectorAll('a').forEach(element => {
+                if (element.textContent.trim() === 'Solicitar orçamento' || element.textContent.trim() === 'Solicitar presupuesto' || element.textContent.trim() === 'Request a quote') {
+                    element.textContent = dictionary.requestQuote;
+                }
+            });
+
+            const openSearchBtn = document.getElementById('openSearchBtn');
+            if (openSearchBtn) {
+                openSearchBtn.title = dictionary.searchTitle;
+            }
+
+            const openLoginBtn = document.getElementById('openLoginBtn');
+            if (openLoginBtn) {
+                openLoginBtn.innerHTML = '<i class="fa-regular fa-user"></i> ' + dictionary.account;
+            }
+
+            const loginModalTitle = document.querySelector('.login-modal-title');
+            if (loginModalTitle) {
+                loginModalTitle.textContent = dictionary.loginTitle;
+            }
+
+            const loginModalSub = document.querySelector('.login-modal-sub');
+            if (loginModalSub) {
+                loginModalSub.textContent = dictionary.loginSubtitle;
+            }
+
+            const searchResults = document.getElementById('searchResults');
+            if (searchResults && searchResults.innerHTML.includes('search-empty-msg')) {
+                const isEmpty = document.getElementById('searchInput').value.trim() === '';
+                if (isEmpty) {
+                    searchResults.innerHTML = '<p class="search-empty-msg" data-i18n="searchEmpty">' + dictionary.searchEmpty + '</p>';
+                }
+            }
+
+            if (searchResults && !searchResults.querySelector('.search-result-item')) {
+                if (document.getElementById('searchInput').value.trim() === '') {
+                    searchResults.innerHTML = '<p class="search-empty-msg" data-i18n="searchEmpty">' + dictionary.searchEmpty + '</p>';
+                }
+            }
+
+            localStorage.setItem('lunna-lang', lang);
+
+            const catalog = document.getElementById('categoryCatalog');
+            if (activeCategory && catalog?.classList.contains('active')) {
+                openCategoryCatalog(activeCategory);
+            }
+        }
+
+        const savedLanguage = localStorage.getItem('lunna-lang') || 'pt-BR';
+        if (languageSelect) {
+            languageSelect.value = savedLanguage;
+            languageSelect.addEventListener('change', (event) => {
+                updateLanguageText(event.target.value);
+            });
+        }
+
+        updateLanguageText(savedLanguage);
+
+        // CURSOR DE REFRAÇÃO DE LUZ
+        const cursorLight = document.getElementById('cursorLight');
+        document.addEventListener('mousemove', (e) => {
+            cursorLight.style.left = e.clientX + 'px';
+            cursorLight.style.top = e.clientY + 'px';
+        });
+
+        // CONTROLE DO PLAYER DE ÁUDIO LOCAL (AUDIO.MP3 - AUTOPLAY COM VOLUME A 25%)
+        const maisonAudio = document.getElementById('maisonAudio');
+        const audioToggleBtn = document.getElementById('audioToggleBtn');
+        const audioIcon = document.getElementById('audioIcon');
+
+        // Configura o volume exato para 25% (0.25)
+        if (maisonAudio) {
+            maisonAudio.volume = 0.25;
+        }
+
+        function playMaisonAudio() {
+            if (maisonAudio) {
+                maisonAudio.play().then(() => {
+                    audioIcon.className = "fa-solid fa-volume-high";
+                }).catch(err => {
+                    console.log("Tentativa de autoplay automático contornada:", err);
+                });
+            }
+        }
+
+        // Tenta tocar automaticamente ao carregar a página
+        window.addEventListener('load', () => {
+            playMaisonAudio();
+        });
+
+        // Fallback de segurança para garantir a execução com som assim que houver qualquer movimento ou toque do usuário
+        document.addEventListener('mousemove', () => {
+            if (maisonAudio && maisonAudio.paused) {
+                playMaisonAudio();
+            }
+        }, { once: true });
+
+        // Botão circular para mutar/pausar e retomar o áudio manualmente
+        audioToggleBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (maisonAudio.paused) {
+                maisonAudio.play();
+                audioIcon.className = "fa-solid fa-volume-high";
+            } else {
+                maisonAudio.pause();
+                audioIcon.className = "fa-solid fa-volume-xmark";
+            }
+        });
+
+        // BASE DE DADOS PARA A BUSCA EM TEMPO REAL
+        const joiasData = [
+            { title: "Anel Majestoso Royal Blue", gem: "Safira Azul", img: "Anéis/1.jpg" },
+            { title: "Colar Ocean Whisper", gem: "Água-Marinha", img: "Colares/1.jpg" },
+            { title: "Pingente London Imperial", gem: "Topázio Azul", img: "Anéis/2.jpg" },
+            { title: "Brincos Velvet Violet", gem: "Tanzanita", img: "Brincos/1.jpg" },
+            { title: "Anel Electric Neon", gem: "Turmalina Paraíba", img: "Anéis/3.jpg" },
+            { title: "Solitário Blue Diamond Supreme", gem: "Diamante Azul", img: "Anéis/4.jpg" },
+            { title: "Gargantilha Gold & Blue Stardust", gem: "Lápis-Lazúli", img: "Colares/2.jpg" },
+            { title: "Bracelete Royalty Heritage", gem: "Turquesa", img: "Pulseiras/1.jpg" }
+        ];
+
+        // CONTROLE DO MODAL DE PESQUISA
+        const openSearchBtn = document.getElementById('openSearchBtn');
+        const closeSearchBtn = document.getElementById('closeSearchBtn');
+        const searchModal = document.getElementById('searchModal');
+        const searchInput = document.getElementById('searchInput');
+        const searchResults = document.getElementById('searchResults');
+
+        const categoryCatalog = document.getElementById('categoryCatalog');
+        const closeCategoryCatalog = document.getElementById('closeCategoryCatalog');
+        const categoryCatalogTitle = document.getElementById('categoryCatalogTitle');
+        const categoryCatalogSubtitle = document.getElementById('categoryCatalogSubtitle');
+        const categoryCatalogGrid = document.getElementById('categoryCatalogGrid');
+        const whatsappNumber = '5511974866465';
+        const whatsappMessage = 'Olá 😊. Vim através do site da *L U N N A* conhecer um pouco mais sobre seus projetos e criação de plataformas digitais!';
+        const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+        document.querySelectorAll('a').forEach(link => {
+            if (link.textContent.trim() === 'Solicitar orçamento') {
+                link.href = whatsappLink;
+            }
+        });
+        const categoryDetails = {
+            'Anéis': {
+                folder: 'Anéis',
+                count: 48,
+                subtitle: 'Anéis com presença, brilho e proporções que elevam cada gesto.'
+            },
+            Brincos: {
+                folder: 'Brincos',
+                count: 51,
+                subtitle: 'Silhuetas luminosas para acompanhar cada gesto com discrição.'
+            },
+            Colares: {
+                folder: 'Colares',
+                count: 58,
+                subtitle: 'Arquiteturas delicadas que repousam sobre a pele como uma assinatura.'
+            },
+            Pulseiras: {
+                folder: 'Pulseiras',
+                count: 71,
+                subtitle: 'Volumes precisos e reflexos raros para envolver o pulso.'
+            },
+            'Relógios': {
+                folder: 'Relógios',
+                count: 48,
+                subtitle: 'Cronografias exclusivas com presença, precisão e presença de luxo discreto.'
+            },
+            'Acessórios': {
+                folder: 'Acessórios',
+                count: 0,
+                subtitle: 'Uma curadoria completa reunindo joias e relógios em uma experiência de descoberta.'
+            },
+            'Casamentos': {
+                folder: 'Casamentos',
+                count: 45,
+                subtitle: 'Peças elegantes para celebrações eternas em uma composição de luxo discreto.'
+            },
+            'Femininos': {
+                folder: 'Femininos',
+                count: 44,
+                subtitle: 'Peças femininas com brilho, sofisticação e presença marcante.'
+            },
+            'Masculinos': {
+                folder: 'Masculinos',
+                count: 45,
+                subtitle: 'Peças masculinas em linhas fortes, elegantes e refinadas.'
+            },
+            'Presentes': {
+                folder: 'Presentes',
+                count: 47,
+                subtitle: 'Seleção especial para presentear com exclusividade e distinção.'
+            }
+        };
+
+        const relogiosImageNames = [
+            'Imagem 1.jpg', 'Imagem 2.jpg', 'Imagem 3.jpg', 'Imagem 4.jpg', 'Imagem 5.jpg', 'Imagem 6.jpg',
+            'Imagem 7.jpg', 'Imagem 8.jpg', 'Imagem 9.jpg', 'Imagem 10.jpg', 'Imagem 11.jpg', 'Imagem12.jpg',
+            'Imagem 13.jpg', 'Imagem 14.jpg', 'Imagem 15.jpg', 'Imagem 16.jpg', 'Imagem 17.jpg', 'Imagem 18.jpg',
+            'Imagem 19.jpg', 'Imagem 20.jpg', 'Imagem 21.jpg', 'Imagem 22.jpg', 'Imagem 23.jpg', 'Imagem 24.jpg',
+            'Imagem 25.jpg', 'Imagem 26.jpg', 'Imagem 27.jpg', 'Imagem 29.jpg', 'Imagem 30.jpg', 'Imagem 31.jpg',
+            'Imagem 32.jpg', 'Imagem 33.jpg', 'Imagem 34.jpg', 'Imagem 35.jpg', 'Imagem 36.jpg', 'Imagem 37.jpg',
+            'Imagem 38.jpg', 'Imagem 39.jpg', 'Imagem 40.jpg', 'Imagem 42.jpg', 'Imagem 43.jpg', 'Imagem 44.jpg',
+            'Imagem 45.jpg', 'Imagem 46.jpg', 'Imagem 47.jpg', 'Imagem 48.jpg'
+        ];
+
+        const folderImageNames = {
+            'Anéis': Array.from({ length: 48 }, (_, index) => `${index + 1}.jpg`),
+            'Relógios': relogiosImageNames,
+            'Casamentos': Array.from({ length: 45 }, (_, index) => `${index + 1}.jpg`),
+            'Femininos': Array.from({ length: 44 }, (_, index) => `${index + 1}.jpg`),
+            'Masculinos': Array.from({ length: 45 }, (_, index) => `${index + 1}.jpg`),
+            'Presentes': Array.from({ length: 47 }, (_, index) => `${index + 1}.jpg`)
+        };
+
+        const categoryImageFiles = {
+            'Anéis': folderImageNames['Anéis'],
+            'Relógios': relogiosImageNames,
+            'Casamentos': folderImageNames['Casamentos'],
+            'Femininos': folderImageNames['Femininos'],
+            'Masculinos': folderImageNames['Masculinos'],
+            'Presentes': folderImageNames['Presentes']
+        };
+
+        function resolveCategoryImage(category, productNumber) {
+            const fileList = categoryImageFiles[category];
+            const fileName = fileList?.[productNumber - 1];
+            if (fileName) {
+                return `${category}/${fileName}`;
+            }
+            return `${category}/${productNumber}.jpg`;
+        }
+
+        const accessoriesCatalog = [
+            {
+                category: 'Brincos',
+                subtitle: 'Silhuetas leves com brilho discreto.',
+                items: [
+                    { title: 'Aurora Celeste', image: 'Brincos/1.jpg', description: 'Peça exclusiva em ouro e acabamento refinado.', number: 1 },
+                    { title: 'Luz Boreal', image: 'Brincos/2.jpg', description: 'Forma luminosa e presença delicada.', number: 2 },
+                    { title: 'Gota Imperial', image: 'Brincos/3.jpg', description: 'Linha elegante com brilho intenso.', number: 3 },
+                    { title: 'Eclipse Safira', image: 'Brincos/4.jpg', description: 'Detalhe soberano em azul profundo.', number: 4 },
+                    { title: 'Violeta Aurora', image: 'Brincos/5.jpg', description: 'Acabamento refinado para uso diário luxuoso.', number: 5 },
+                    { title: 'Estrela Azul', image: 'Brincos/6.jpg', description: 'Brilho cristalino e design sereno.', number: 6 }
+                ]
+            },
+            {
+                category: 'Colares',
+                subtitle: 'Linhas sofisticadas e presença visual intensa.',
+                items: [
+                    { title: 'Linha Celestial', image: 'Colares/1.jpg', description: 'Design exclusivo para realçar o pescoço com sutileza.', number: 1 },
+                    { title: 'Riviera Noturna', image: 'Colares/2.jpg', description: 'Estética elegante com perfil refinado.', number: 2 },
+                    { title: 'Constelação Azul', image: 'Colares/3.jpg', description: 'Textura e brilho em proporção equilibrada.', number: 3 },
+                    { title: 'Orbe Imperial', image: 'Colares/4.jpg', description: 'Composição marcada por presença e luminosidade.', number: 4 },
+                    { title: 'Gota Branca', image: 'Colares/5.jpg', description: 'Uma silhueta discreta, mas marcante.', number: 5 },
+                    { title: 'Coral Marinho', image: 'Colares/6.jpg', description: 'Matriz clássica com visuais contemporâneos.', number: 6 }
+                ]
+            },
+            {
+                category: 'Anéis',
+                subtitle: 'Símbolos de presença, dureza e impacto luminoso.',
+                items: [
+                    { title: 'Majestoso Royal Blue', image: 'Anéis/1.jpg', description: 'Safira azul com acabamento clássico e imperioso.', number: 1 },
+                    { title: 'Electric Neon', image: 'Anéis/2.jpg', description: 'Gema azul elétrico com presença de destaque.', number: 2 },
+                    { title: 'Blue Diamond Supreme', image: 'Anéis/3.jpg', description: 'Diamante azul para presença ímpar e refinada.', number: 3 },
+                    { title: 'London Imperial', image: 'Anéis/4.jpg', description: 'Topázio azul em perfil elegante e contemporâneo.', number: 4 },
+                    { title: 'Royal Crest', image: 'Anéis/5.jpg', description: 'Ícone de sofisticação com brilho raro.', number: 5 },
+                    { title: 'Prisma Celeste', image: 'Anéis/6.jpg', description: 'Escultura luminosa para gestos silenciosos.', number: 6 }
+                ]
+            },
+            {
+                category: 'Relógios',
+                subtitle: 'Cronografias com precisão e caráter aristocrático.',
+                items: [
+                    { title: 'Maré Renascente', image: `Relógios/${relogiosImageNames[0]}`, description: 'Peça de alta precisão para uso refinado.', number: 1 },
+                    { title: 'Vento Silencioso', image: `Relógios/${relogiosImageNames[1]}`, description: 'Ajuste elegante com presença discreta.', number: 2 },
+                    { title: 'Luz Sideral', image: `Relógios/${relogiosImageNames[2]}`, description: 'Cronografia com visual luminoso e raro.', number: 3 },
+                    { title: 'Eclipse de Ouro', image: `Relógios/${relogiosImageNames[3]}`, description: 'A matéria-prima e o acabamento em destaque.', number: 4 },
+                    { title: 'Oceano Azul', image: `Relógios/${relogiosImageNames[4]}`, description: 'Design sofisticado para a rotina de luxo.', number: 5 },
+                    { title: 'Noite Brilhante', image: `Relógios/${relogiosImageNames[5]}`, description: 'Cronômetro refinado com alto impacto visual.', number: 6 }
+                ]
+            }
+        ];
+
+        const weddingsCatalog = [
+            {
+                category: 'Colares',
+                subtitle: 'Acessórios de celebração com presença e delicadeza.',
+                items: [
+                    { title: 'Linha Celestial', image: 'Colares/1.jpg', description: 'Peça emblemática para o momento mais especial.', number: 1 },
+                    { title: 'Riviera Noturna', image: 'Colares/2.jpg', description: 'Linha luminosa e sofisticada para a noite.', number: 2 },
+                    { title: 'Constelação Azul', image: 'Colares/3.jpg', description: 'Detalhe sutil com grande presença visual.', number: 3 },
+                    { title: 'Orbe Imperial', image: 'Colares/4.jpg', description: 'Composição elegante para um look de luxo.', number: 4 }
+                ]
+            },
+            {
+                category: 'Brincos',
+                subtitle: 'Brilho delicado para complementar a noiva e a celebração.',
+                items: [
+                    { title: 'Aurora Celeste', image: 'Brincos/1.jpg', description: 'Detalhe refinado para qualquer vestido de festa.', number: 1 },
+                    { title: 'Luz Boreal', image: 'Brincos/2.jpg', description: 'Brilho leve com acabamento impecável.', number: 2 },
+                    { title: 'Gota Imperial', image: 'Brincos/3.jpg', description: 'Sofisticação em cada linha e reflexo.', number: 3 },
+                    { title: 'Eclipse Safira', image: 'Brincos/4.jpg', description: 'Design marcante para celebrações memoráveis.', number: 4 }
+                ]
+            },
+            {
+                category: 'Anéis',
+                subtitle: 'Símbolos de compromisso com acabamento refinado.',
+                items: [
+                    { title: 'Majestoso Royal Blue', image: 'Anéis/1.jpg', description: 'Safira azul para um detalhe inconfundível.', number: 1 },
+                    { title: 'Electric Neon', image: 'Anéis/2.jpg', description: 'Texto de glamour e presença luminosa.', number: 2 },
+                    { title: 'Blue Diamond Supreme', image: 'Anéis/3.jpg', description: 'Brilho raro para momentos inesquecíveis.', number: 3 },
+                    { title: 'London Imperial', image: 'Anéis/4.jpg', description: 'Uma assinatura sofisticada para a cerimônia.', number: 4 }
+                ]
+            }
+        ];
+
+        function buildAccessoriesCarousel(categoryData) {
+            const dictionary = getCurrentDictionary();
+            const categoryName = translateCategory(categoryData.category);
+            const cards = categoryData.items.map(item => `
+                <article class="accessory-card">
+                    <img src="${item.image}" alt="${item.title} LUNNA" loading="lazy">
+                    <div class="accessory-card-info">
+                        <span>${categoryName} ${String(item.number).padStart(2, '0')}</span>
+                        <h4>${item.title}</h4>
+                        <p>${item.description}</p>
+                        <a href="${whatsappLink}" class="accessory-card-quote" target="_blank" rel="noopener">${dictionary.requestQuote}</a>
+                    </div>
+                </article>
+            `).join('');
+
+            return `
+                <section class="accessories-section">
+                    <div class="accessories-header">
+                        <h3>${categoryName}</h3>
+                        <p>${categoryData.subtitle}</p>
+                    </div>
+                    <div class="accessories-carousel">
+                        <div class="accessories-track">${cards}${cards}</div>
+                    </div>
+                </section>
+            `;
+        }
+
+        function createCategoryProduct(category, productNumber) {
+            const dictionary = getCurrentDictionary();
+            const names = {
+                Brincos: ['Aurora Celeste', 'Luz Boreal', 'Gota Imperial', 'Eclipse Safira'],
+                Colares: ['Linha Celestial', 'Riviera Noturna', 'Constelação Azul', 'Orbe Imperial'],
+                Pulseiras: ['Arco Lunar', 'Rivière Azure', 'Elo Celeste', 'Cintilar Real'],
+                'Relógios': ['Maré Renascente', 'Vento Silencioso', 'Luz Sideral', 'Eclipse de Ouro'],
+                'Casamentos': ['Noiva Celeste', 'Luz de Véspera', 'Ato Eterno', 'Vow Master'],
+                'Femininos': ['Vela Aurora', 'Lua de Inverno', 'Estrela de Seda', 'Aroma do Oceano'],
+                'Masculinos': ['Soberano Azul', 'Noite Imperial', 'Ouro Resistente', 'Ato de Classe'],
+                'Presentes': ['Presente Singular', 'Emoção Intemporal', 'Brilho de Memória', 'Joia de Celebração']
+            };
+            const materials = dictionary.materials;
+            const nameOptions = names[category] || ['Peça Exclusiva', 'Seleção LUNNA', 'Design Sob Medida', 'Coleção Privada'];
+            const name = nameOptions[(productNumber - 1) % nameOptions.length];
+            const material = materials[(productNumber - 1) % materials.length];
+            const title = `${name} ${String(productNumber).padStart(2, '0')}`;
+            const imageSrc = resolveCategoryImage(category, productNumber);
+
+            return `
+                <article class="category-product-card">
+                    <img class="category-product-image" src="${imageSrc}" alt="${title} LUNNA" loading="lazy">
+                    <div class="category-product-info">
+                        <span class="category-product-number">${translateCategory(category)} ${String(productNumber).padStart(2, '0')}</span>
+                        <h3 class="category-product-name">${title}</h3>
+                        <p class="category-product-description">${dictionary.productDescription.replace('{material}', material)}</p>
+                        <a class="category-product-quote" href="${whatsappLink}" target="_blank" rel="noopener">${dictionary.requestQuote}</a>
+                    </div>
+                </article>
+            `;
+        }
+
+        function openCategoryCatalog(category) {
+            const details = categoryDetails[category];
+            if (!details) return;
+            activeCategory = category;
+            const dictionary = getCurrentDictionary();
+            categoryCatalogTitle.textContent = translateCategory(category);
+            categoryCatalogSubtitle.textContent = dictionary.categorySubtitles[category] || details.subtitle;
+            categoryCatalogGrid.classList.remove('accessories-layout');
+
+            if (category === 'Acessórios') {
+                categoryCatalogGrid.classList.add('accessories-layout');
+                categoryCatalogGrid.innerHTML = accessoriesCatalog.map(buildAccessoriesCarousel).join('');
+                categoryCatalog.classList.add('active');
+                categoryCatalog.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+                return;
+            }
+
+            if (category === 'Casamentos') {
+                categoryCatalogGrid.classList.add('accessories-layout');
+                categoryCatalogGrid.innerHTML = weddingsCatalog.map(buildAccessoriesCarousel).join('');
+                categoryCatalog.classList.add('active');
+                categoryCatalog.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+                return;
+            }
+
+            const fileList = categoryImageFiles[category] || null;
+            const productCount = fileList ? fileList.length : details.count;
+            categoryCatalogSubtitle.textContent = `${dictionary.categorySubtitles[category] || details.subtitle} ${productCount} ${dictionary.creationsAvailable}`;
+            categoryCatalogGrid.innerHTML = Array.from({ length: productCount }, (_, index) => createCategoryProduct(category, index + 1)).join('');
+            categoryCatalog.classList.add('active');
+            categoryCatalog.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeCategoryCatalogModal() {
+            categoryCatalog.classList.remove('active');
+            categoryCatalog.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        }
+
+        document.querySelectorAll('.category-link').forEach(link => {
+            link.addEventListener('click', (event) => {
+                event.preventDefault();
+                openCategoryCatalog(link.dataset.category);
+            });
+        });
+
+        closeCategoryCatalog.addEventListener('click', closeCategoryCatalogModal);
+        categoryCatalog.addEventListener('click', (event) => {
+            if (event.target === categoryCatalog) closeCategoryCatalogModal();
+        });
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && categoryCatalog.classList.contains('active')) closeCategoryCatalogModal();
+        });
+
+        openSearchBtn.addEventListener('click', () => {
+            searchModal.classList.add('active');
+            setTimeout(() => searchInput.focus(), 200);
+        });
+
+        closeSearchBtn.addEventListener('click', () => {
+            searchModal.classList.remove('active');
+        });
+
+        searchModal.addEventListener('click', (e) => {
+            if (e.target === searchModal) searchModal.classList.remove('active');
+        });
+
+        // LÓGICA DA BUSCA EM TEMPO REAL
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+            if (query === "") {
+                searchResults.innerHTML = '<p class="search-empty-msg">Digite o nome de uma joia, gema ou categoria (ex: Safira, Diamante, Anel)...</p>';
+                return;
+            }
+
+            const matches = joiasData.filter(item => 
+                item.title.toLowerCase().includes(query) || 
+                item.gem.toLowerCase().includes(query)
+            );
+
+            if (matches.length === 0) {
+                searchResults.innerHTML = '<p class="search-empty-msg">Nenhuma joia encontrada na Maison para essa busca.</p>';
+            } else {
+                searchResults.innerHTML = matches.map(item => `
+                    <a href="https://wa.me/5511974866465?text=Olá.%20Gostaria%20de%20saber%20mais%20sobre%20o%20${encodeURIComponent(item.title)}" target="_blank" class="search-result-item">
+                        <img src="${item.img}" class="search-result-img" alt="${item.title}">
+                        <div class="search-result-info">
+                            <h4>${item.title}</h4>
+                            <p>${item.gem}</p>
+                        </div>
+                    </a>
+                `).join('');
+            }
+        });
+
+        // MODAL DE LOGIN
+        const openLoginBtn = document.getElementById('openLoginBtn');
+        const closeLoginBtn = document.getElementById('closeLoginBtn');
+        const loginModal = document.getElementById('loginModal');
+
+        openLoginBtn.addEventListener('click', () => { loginModal.classList.add('active'); });
+        closeLoginBtn.addEventListener('click', () => { loginModal.classList.remove('active'); });
+        loginModal.addEventListener('click', (e) => { if (e.target === loginModal) loginModal.classList.remove('active'); });
+
+        // CARROSSEL INFINITO
+        const carouselTrack = document.getElementById('carouselTrack');
+        if (carouselTrack) {
+            const cards = Array.from(carouselTrack.children);
+            cards.forEach(card => {
+                const clone = card.cloneNode(true);
+                carouselTrack.appendChild(clone);
+            });
+        }
+
+        // MENU CATEGORIAS
+        const categoryBtn = document.getElementById('categoryMenuBtn');
+        const categoryDropdown = document.getElementById('categoryDropdown');
+
+        categoryBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            categoryDropdown.classList.toggle('active');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!categoryDropdown.contains(e.target) && !categoryBtn.contains(e.target)) {
+                categoryDropdown.classList.remove('active');
+            }
+        });
+
+        // ANIMATION SCROLL REVEAL
+        const observerOptions = { root: null, threshold: 0.15 };
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in-up').forEach(element => {
+            observer.observe(element);
+        });
+    </script>
+</body>
+</html>
