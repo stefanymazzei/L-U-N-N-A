@@ -30,7 +30,7 @@
 
 ---
 
-## 1. A História e o Propósito do Projeto
+### 1. A História e o Propósito do Projeto
 
 Como estudante apaixonada pela interseção entre **Front-End**, **UI/UX Design** e **arquitetura de interfaces**, sempre percebi que os e-commerces tradicionais costumam tratar joias de alto padrão como itens de catálogo comum: vitrines cheias de poluição visual, banners promocionais agressivos e dezenas de informações disputando a atenção do cliente ao mesmo tempo. 
 
@@ -40,7 +40,7 @@ Durante o desenvolvimento, dediquei horas analisando grandes marcas globais como
 
 ---
 
-## 2. Ideação Visual, Paleta de Cores e Experiência do Usuário (UI/UX)
+### 2. Ideação Visual, Paleta de Cores e Experiência do Usuário (UI/UX)
 
 Criar uma atmosfera premium exigiu um estudo cuidadoso de psicologia das cores, espaçamento e proporções visuais. A identidade visual da L U N N A foi pensada para transmitir sofisticação sem parecer inacessível ou fria.
 
@@ -69,7 +69,7 @@ Um dos maiores desafios que me impus durante a fase de prototipagem foi **não t
 
 ---
 
-## 3. Bastidores do Código e Decisões Técnicas
+### 3. Bastidores do Código e Decisões Técnicas
 
 Construir a L U N N A sem bibliotecas visuais prontas (como Bootstrap ou Tailwind) foi uma escolha consciente para colocar à prova meu domínio de **código nativo**. Eu queria ter o controle total de cada pixel, de cada transição e de cada milissegundo de carregamento da página.
 
@@ -109,7 +109,7 @@ L-U-N-N-A/
 
 ---
 
-## 4. Funcionalidades e Detalhes da Experiência
+### 4. Funcionalidades e Detalhes da Experiência
 
 Durante a navegação no site da **L U N N A**, o usuário se depara com uma série de detalhes pensados para encantar:
 
@@ -121,7 +121,7 @@ Durante a navegação no site da **L U N N A**, o usuário se depara com uma sé
 
 ---
 
-## 5. Principais Desafios e Lições Aprendidas
+### 5. Principais Desafios e Lições Aprendidas
 
 Desenvolver esse projeto foi um divisor de águas nos meus estudos de programação. Dentre os aprendizados mais marcantes, destaco:
 
@@ -131,7 +131,7 @@ Desenvolver esse projeto foi um divisor de águas nos meus estudos de programaç
 
 ---
 
-## 6. Como Rodar o Projeto na Sua Máquina
+### 6. Como Rodar o Projeto na Sua Máquina
 
 Se você quiser baixar o projeto para estudar a estrutura de código ou testar alterações locais:
 
@@ -151,7 +151,7 @@ Se você quiser baixar o projeto para estudar a estrutura de código ou testar a
 
 ---
 
-## 7. Próximos Passos (Roadmap de Evolução)
+### 7. Próximos Passos (Roadmap de Evolução)
 
 Como este é um projeto vivo que acompanha meu crescimento profissional, pretendo implementar as seguintes melhorias em versões futuras:
 
