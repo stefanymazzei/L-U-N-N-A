@@ -1,6 +1,6 @@
 <div align="center">
 
-# ✨ L U N N A | Alta Joalheria & Design Digital
+# L U N N A | Alta Joalheria & Design Digital
 
 <p align="center">
   <i>Uma experiência imersiva de e-commerce conceitual desenvolvida para unir a estética do luxo atemporal à precisão do desenvolvimento Front-End moderno.</i>
@@ -30,7 +30,7 @@
 
 ---
 
-## 📖 1. A História e o Propósito do Projeto
+## 1. A História e o Propósito do Projeto
 
 Como estudante apaixonada pela interseção entre **Front-End**, **UI/UX Design** e **arquitetura de interfaces**, sempre percebi que os e-commerces tradicionais costumam tratar joias de alto padrão como itens de catálogo comum: vitrines cheias de poluição visual, banners promocionais agressivos e dezenas de informações disputando a atenção do cliente ao mesmo tempo. 
 
@@ -40,11 +40,11 @@ Durante o desenvolvimento, dediquei horas analisando grandes marcas globais como
 
 ---
 
-## 🎨 2. Ideação Visual, Paleta de Cores e Experiência do Usuário (UI/UX)
+## 2. Ideação Visual, Paleta de Cores e Experiência do Usuário (UI/UX)
 
 Criar uma atmosfera premium exigiu um estudo cuidadoso de psicologia das cores, espaçamento e proporções visuais. A identidade visual da L U N N A foi pensada para transmitir sofisticação sem parecer inacessível ou fria.
 
-### 🎭 A Construção da Paleta de Cores
+### A Construção da Paleta de Cores
 
 A paleta foi inspirada no contraste elegante entre as noites estreladas e o brilho discreto dos metais polidos:
 
@@ -56,24 +56,24 @@ A paleta foi inspirada no contraste elegante entre as noites estreladas e o bril
 | **Champagne Silk**| `#A39274` | Um dourado acetinado e desbotado, ideal para linhas divisórias, subtítulos e tags de categoria, trazendo requinte sem cansar a visão do usuário. |
 | **Pure Platinum** | `#F8F9FA` | Textos principais, títulos e botões de chamada primária (*Call to Action*). Proporciona contraste ideal e conforto de leitura de acordo com as diretrizes de acessibilidade WCAG. |
 
-### ✒️ Escolha Tipográfica e Hierarquia Visual
+### Escolha Tipográfica e Hierarquia Visual
 
 A tipografia desempenha um papel emocional indispensável no design de luxo:
 
 1. **Títulos e Logotipo (Serifados Clássicos):** Utilizei fontes com serifas bem esculpidas e proporções refinadas, resgatando a herança editorial das revistas clássicas de moda e o desenho das joias esculpidas à mão.
 2. **Textos Corridos e Componentes de Interface (Sans-Serif Modernas):** Para descrições técnicas, preços, botões de ação e menus de navegação, selecionei uma família tipográfica sem serifa geométrica, limpa e com *letter-spacing* levemente expandido, assegurando legibilidade impecável mesmo em telas compactas de smartphones.
 
-### 📐 Filosofia do *Whitespace* (Respiro Visual)
+### Filosofia do *Whitespace* (Respiro Visual)
 
 Um dos maiores desafios que me impus durante a fase de prototipagem foi **não ter medo do espaço vazio**. No mercado de luxo, o espaço em branco (*whitespace*) não é ausência de conteúdo: é elegância, foco e respeito ao produto. O grid foi calculado com base em múltiplos de `8px`, garantindo proporções simétricas entre cartões, títulos e seções inteiras.
 
 ---
 
-## 💻 3. Bastidores do Código e Decisões Técnicas
+## 3. Bastidores do Código e Decisões Técnicas
 
 Construir a L U N N A sem bibliotecas visuais prontas (como Bootstrap ou Tailwind) foi uma escolha consciente para colocar à prova meu domínio de **código nativo**. Eu queria ter o controle total de cada pixel, de cada transição e de cada milissegundo de carregamento da página.
 
-### 🛠️ Tabela de Tecnologias Utilizadas
+### Tabela de Tecnologias Utilizadas
 
 | Tecnologia | Como e Onde Foi Aplicada |
 | :--- | :--- |
@@ -82,7 +82,7 @@ Construir a L U N N A sem bibliotecas visuais prontas (como Bootstrap ou Tailwin
 | **JavaScript (ES6+)** | Lógica pura (Vanilla JS) responsável pelo controle do carrinho de compras interativo, cálculo de totais, filtros de categoria em tempo real, controle do menu hambúrguer responsivo e abertura assíncrona de detalhes de cada peça. |
 | **GitHub Pages** | Configuração de esteira para hospedagem estática direta do repositório, garantindo entrega rápida e certificação SSL automática. |
 
-### 📂 Estrutura e Organização de Arquivos
+### Estrutura e Organização de Arquivos
 
 Para manter o projeto profissional e escalável, organizei os arquivos em uma arquitetura modular clara:
 
@@ -109,7 +109,7 @@ L-U-N-N-A/
 
 ---
 
-## 🌟 4. Funcionalidades e Detalhes da Experiência
+## 4. Funcionalidades e Detalhes da Experiência
 
 Durante a navegação no site da **L U N N A**, o usuário se depara com uma série de detalhes pensados para encantar:
 
@@ -121,7 +121,7 @@ Durante a navegação no site da **L U N N A**, o usuário se depara com uma sé
 
 ---
 
-## 🎯 5. Principais Desafios e Lições Aprendidas
+## 5. Principais Desafios e Lições Aprendidas
 
 Desenvolver esse projeto foi um divisor de águas nos meus estudos de programação. Dentre os aprendizados mais marcantes, destaco:
 
@@ -131,7 +131,7 @@ Desenvolver esse projeto foi um divisor de águas nos meus estudos de programaç
 
 ---
 
-## 🚀 6. Como Rodar o Projeto na Sua Máquina
+## 6. Como Rodar o Projeto na Sua Máquina
 
 Se você quiser baixar o projeto para estudar a estrutura de código ou testar alterações locais:
 
@@ -151,7 +151,7 @@ Se você quiser baixar o projeto para estudar a estrutura de código ou testar a
 
 ---
 
-## 🔮 7. Próximos Passos (Roadmap de Evolução)
+## 7. Próximos Passos (Roadmap de Evolução)
 
 Como este é um projeto vivo que acompanha meu crescimento profissional, pretendo implementar as seguintes melhorias em versões futuras:
 
@@ -164,7 +164,7 @@ Como este é um projeto vivo que acompanha meu crescimento profissional, pretend
 
 <div align="center">
 
-### 💡 Feito com carinho e código por Stefany Mazzei
+### Feito com carinho e código por Stefany Mazzei
 
 Se você gostou deste projeto, sinta-se à vontade para deixar uma ⭐️ no repositório!
 
